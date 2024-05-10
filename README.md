@@ -36,6 +36,7 @@ However, you can access the dataset used for training the model at the following
 
 📚 Documentation
 
-A comprehensive documentation file is available in Italian, providing detailed explanations of the selected machine learning models, data preprocessing steps, and evaluation metrics. The documentation also includes charts and graphs generated from the evaluation results.
+A comprehensive documentation file is available in Italian, providing detailed explanations of the selected machine learning models, data preprocessing steps, and evaluation metrics. The documentation also includes charts and graphs generated from the evaluation results:
+https://drive.google.com/file/d/1IuoxZflCYK62aH_8guWB_E-SLBo8zP0U/view?usp=drive_link
 
 
