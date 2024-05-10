@@ -28,6 +28,15 @@ df['DRK_YN'] = labelencoder_drink.fit_transform(df['DRK_YN'])
 X_smoke = df.drop(columns=['DRK_YN', 'SMK_stat_type_cd'])
 y_smoke = df['SMK_stat_type_cd']
 
+"""
+# Definizione dei parametri da ottimizzare
+param_grid = {
+    'n_estimators': [10, 50, 100, 200],
+    'max_depth': [None, 2, 4, 6, 8, 10],
+    'min_samples_split': [2, 5, 10]
+}
+"""
+
 # Calcolo IQR solo per il modello del fumatore
 Q1_smoke = X_smoke.quantile(0.25)
 Q3_smoke = X_smoke.quantile(0.75)
@@ -61,10 +70,6 @@ recall_rf_test_smoke_opt = recall_score(y_test_smoke, y_pred_rf_test_smoke_opt, 
 accuracy_rf_test_smoke_opt = accuracy_score(y_test_smoke, y_pred_rf_test_smoke_opt)
 precision_rf_test_smoke_opt = precision_score(y_test_smoke, y_pred_rf_test_smoke_opt, average='weighted')
 
-print("\nRecall: ", recall_rf_test_smoke_opt)
-print("Accuracy: ", accuracy_rf_test_smoke_opt)
-print("Precision: ", precision_rf_test_smoke_opt)
-
 # Matrice di Confusione Normalizzata per il modello del fumatore
 cm_smoke = confusion_matrix(y_test_smoke, y_pred_rf_test_smoke_opt)
 cm_norm_smoke = cm_smoke.astype('float') / cm_smoke.sum(axis=1)[:, np.newaxis]
@@ -79,6 +84,15 @@ plt.show()
 # Selezione delle features e dei target per il modello dell'alcolista
 X_drink = df.drop(columns=['SMK_stat_type_cd', 'DRK_YN'])
 y_drink = df['DRK_YN']
+
+"""
+# Definizione dei parametri da ottimizzare
+param_grid = {
+    'n_estimators': [10, 50, 100, 200],
+    'max_depth': [None, 2, 4, 6, 8, 10],
+    'min_samples_split': [2, 5, 10]
+}
+"""
 
 # Divisione del dataset in set di addestramento e test per il modello dell'alcolista
 X_train_drink, X_test_drink, y_train_drink, y_test_drink = train_test_split(X_drink, y_drink, test_size=0.2, random_state=42, stratify=y_drink)
@@ -99,10 +113,6 @@ print("\nClassification Report:\n", classification_report(y_test_drink, y_pred_r
 recall_rf_test_drink_opt = recall_score(y_test_drink, y_pred_rf_test_drink_opt, average='weighted')
 accuracy_rf_test_drink_opt = accuracy_score(y_test_drink, y_pred_rf_test_drink_opt)
 precision_rf_test_drink_opt = precision_score(y_test_drink, y_pred_rf_test_drink_opt, average='weighted')
-
-print("\nRecall: ", recall_rf_test_drink_opt)
-print("Accuracy: ", accuracy_rf_test_drink_opt)
-print("Precision: ", precision_rf_test_drink_opt)
 
 # Matrice di Confusione Normalizzata per il modello dell'alcolista
 cm_drink = confusion_matrix(y_test_drink, y_pred_rf_test_drink_opt)
