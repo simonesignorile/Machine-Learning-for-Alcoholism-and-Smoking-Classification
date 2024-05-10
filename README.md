@@ -20,6 +20,9 @@ The repository contains a unique script which contains:
 
 - Data preprocessing.
 - Training machine learning models.
+- Application of SMOTE technique.
+- Application of InterQuartile Range (IQR).
+- Application of Grid Search method for hyperparameter optimization.
 - Evaluating model performance.
 
 📊 Data Analysis and Visualization
